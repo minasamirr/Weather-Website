@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <title>Weather website</title>
+    <link rel="stylesheet" href="style.css">
+  </head>
+  <body>
+    <div id="container">
+      <div id="location">
+        <%= form_with url: '/get_weather', method: :post do %>
+          <%= label_tag :country, "Enter country name" %>
+          <%= text_field_tag :country %> 
+          <%= label_tag :city, "Enter city name" %>
+          <%= text_field_tag :city %>
+          <%= submit_tag "Get Weather" %>
+        <% end %>
+      </div>
+    </div>
+    <script src="script.js"></script>
+  </body>
+</html>
