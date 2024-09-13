@@ -1,17 +1,24 @@
 <h1>Weather Forecast</h1>
-<%#= image_tag 'clouds.svg', alt: 'tempIcon' %>
+<br>
 <% if @weather_data.present? %>
-  <h3>Weather in <%= @weather_data['name'] %>:</h3>
-  <p>Temperature: <%= @weather_data['main']['temp'] %> °C</p>
-  <p>Weather: <%= @weather_data['weather'][0]['description'] %></p>
-  <p>Wind: <%= @weather_data['wind']['speed'] %> m/s</p>
-  <p>Humidity: <%= @weather_data['main']['humidity'] %></p>
-
-  <h3>Advice:</h3>
-  <p><%= @advice %></p>
+  <div>
+    <h2>Weather in <%= @weather_data['name'] %>:</h2>
+    <h3>Temperature: <%= @weather_data['main']['temp'] %> °C</h3>
+    <h3>Weather: <%= @weather_data['weather'][0]['description'] %></h3>
+    <ul>
+      <div>
+        <li>Feels like: <%= @weather_data['main']['feels_like'] %> m/s</li>
+        <li>Wind: <%= @weather_data['wind']['speed'] %> m/s</li>
+        <li>Humidity: <%= @weather_data['main']['humidity'] %></li>
+        <li>Longitude: <%= @weather_data['coord']['lat'] %></li>
+        <li>Latitude: <%= @weather_data['coord']['lon'] %></li>
+      </div>
+    </ul>
+    <h2>Advice:</h2>
+    <p><%= @advice %></p>
+  </div>
 <% else %>
   <p><%= @error %></p>
 <% end %>
-
 
 <%= link_to 'Search Again', root_path %>

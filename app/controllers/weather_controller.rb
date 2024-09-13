@@ -7,8 +7,7 @@ class WeatherController < ApplicationController
   def get_weather
     country = params[:country]
     city = params[:city]
-    api_key = "2ab7b3e2e5bf1a9cb80837b9e90fad3e"
-    url = "https://api.openweathermap.org/data/2.5/weather?q=#{country},#{city}&appid=#{api_key}&units=metric"
+    url = get_api_url(country, city)
 
     response = HTTParty.get(url)
     if response.success?
@@ -29,6 +28,11 @@ class WeatherController < ApplicationController
   end
 
   private
+  
+  def get_api_url(country, city)
+    api_key = "2ab7b3e2e5bf1a9cb80837b9e90fad3e"
+    url = "https://api.openweathermap.org/data/2.5/weather?q=#{country},#{city}&appid=#{api_key}&units=metric"
+  end
 
   def generate_advice(weather_data)
     temperature = weather_data["main"]["temp"]
