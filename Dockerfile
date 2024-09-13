@@ -4,16 +4,18 @@
 # docker build -t my-app .
 # docker run -d -p 80:80 -p 443:443 --name my-app -e RAILS_MASTER_KEY=<value from config/master.key> my-app
 
+# For a containerized dev environment, see Dev Containers: https://guides.rubyonrails.org/getting_started_with_devcontainer.html
+
 # Make sure RUBY_VERSION matches the Ruby version in .ruby-version
 ARG RUBY_VERSION=3.3.4
-FROM docker.io/library/ruby:$RUBY_VERSION-slim AS base
+FROM docker.io/library/ruby:$RUBY_VERSION-slim as base
 
 # Rails app lives here
 WORKDIR /rails
 
 # Install base packages
 RUN apt-get update -qq && \
-    apt-get install --no-install-recommends -y curl libjemalloc2 libvips sqlite3 && \
+    apt-get install --no-install-recommends -y curl libjemalloc2 libsqlite3-0 libvips && \
     rm -rf /var/lib/apt/lists /var/cache/apt/archives
 
 # Set production environment
@@ -23,7 +25,7 @@ ENV RAILS_ENV="production" \
     BUNDLE_WITHOUT="development"
 
 # Throw-away build stage to reduce size of final image
-FROM base AS build
+FROM base as build
 
 # Install packages needed to build gems
 RUN apt-get update -qq && \
