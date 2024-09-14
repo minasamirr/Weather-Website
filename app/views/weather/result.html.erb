@@ -1,23 +1,42 @@
 <h1>Weather Forecast</h1>
 
-<% if @weather_data.present? %>
-  <div class="weather-result">
-    <h2>Weather in  <%= @city %>, <%= @weather_data['name'] %>:</h2>
-    <h3>Temperature: <%= @weather_data['main']['temp'] %> °C</h3>
-    <h3>Weather: <%= @weather_data['weather'][0]['description'] %></h3>
-    <ul>
-      <li>Feels like: <%= @weather_data['main']['feels_like'] %> °C</li>
-      <li>Wind: <%= @weather_data['wind']['speed'] %> m/s</li>
-      <li>Humidity: <%= @weather_data['main']['humidity'] %> %</li>
-      <li>Longitude: <%= @weather_data['coord']['lon'] %></li>
-      <li>Latitude: <%= @weather_data['coord']['lat'] %></li>
-    </ul>
-    <h2>Advice:</h2>
-    <p><%= @advice %></p>
+<div class="container">
+  <div class="weather-card">
+    <div class="main-weather">
+      <h1><%= @weather_data['main']['temp'] %> °C</h1>
+      <div class="location-time">
+        <h2><%= @city %>, <%= @weather_data['name'] %></h2>
+        <p><%= @time_location %></p>
+      </div>
+    </div>
+    <div class="secondary-info">
+      <div>
+        <p>Weather: <%= @weather_data['weather'][0]['description'] %></p>
+      </div>
+    </div>
+    <div class="secondary-info">
+      <div>
+        <p>Humidity: <%= @weather_data['main']['humidity'] %> %</p>
+      </div>
+      <div>
+        <p>Feels like: <%= @weather_data['main']['feels_like'] %> °C</p>
+      </div>
+    </div>
+    <div class="secondary-info">
+      <div>
+        <p>Pressure: <%= @weather_data['main']['pressure'] %>  mb</p>
+      </div>
+      <div>
+        <p>Wind: <%= @weather_data['wind']['speed'] %> mph</p>
+      </div>
+    </div>
+        <div class="secondary-info">
+      <div>
+        <p><strong>Advice:</strong> <%= @advice %></p>
+      </div>
+    </div>
   </div>
-<% else %>
-  <p><%= @error %></p>
-<% end %>
+</div>
 
 <div class="search-again-container">
   <%= link_to 'Search Again', root_path, class: 'search-again-link' %>

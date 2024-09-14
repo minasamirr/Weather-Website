@@ -102,3 +102,63 @@ body {
 .search-again-link:active {
   background-color: #1f6b99;
 }
+
+
+
+
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 20px;
+}
+
+.weather-card {
+  background-color: rgba(0, 0, 0, 0.5); /* Transparent black */
+  padding: 20px;
+  border-radius: 10px;
+  text-align: center;
+  max-width: 800px;
+  width: 100%;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+.main-weather {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.main-weather h1 {
+  font-size: 5rem;
+  margin: 0;
+  color: #FFFFFF; /* Large temperature text - white */
+}
+
+.main-weather h2 {
+  font-size: 2rem;
+  margin: 0;
+  color: #FFFFFF; /* Location name */
+}
+
+.main-weather p {
+  font-size: 1rem;
+  color: #FFFFFF; /* Time and weather description */
+}
+
+.secondary-info div {
+  flex: 1;
+  padding: 10px;
+  background-color: rgba(255, 255, 255, 0.2); /* Semi-transparent white for info blocks */
+  margin: 5px;
+  border-radius: 8px;
+  color: #FFFFFF; /* Text remains white */
+}
+.main-weather .location-time {
+  text-align: right;
+}
+
+.secondary-info {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 20px;
+}
