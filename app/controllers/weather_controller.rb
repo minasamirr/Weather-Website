@@ -13,6 +13,7 @@ class WeatherController < ApplicationController
     if response.success?
       session[:weather_data] = response.parsed_response
       session[:advice] = generate_advice(session[:weather_data])
+      session[:city] = city
     else
       session[:weather_data] = {}
       session[:error] = "Could not retrieve weather data. Please check the city name."
@@ -23,15 +24,16 @@ class WeatherController < ApplicationController
 
   def result
     @weather_data = session[:weather_data]
+    @city = session[:city]
     @advice = session[:advice]
     @error = session[:error]
   end
 
   private
-  
+
   def get_api_url(country, city)
     api_key = "2ab7b3e2e5bf1a9cb80837b9e90fad3e"
-    url = "https://api.openweathermap.org/data/2.5/weather?q=#{country},#{city}&appid=#{api_key}&units=metric"
+    "https://api.openweathermap.org/data/2.5/weather?q=#{country},#{city}&appid=#{api_key}&units=metric"
   end
 
   def generate_advice(weather_data)
